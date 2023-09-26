@@ -1,11 +1,13 @@
 /**************************************************************************/
 /**
  * @file    balance.ino
- * @authors  Theo Pires, Yasmin 
+ * @author  Theo Pires
  * @date    26/09/2023
 */
 /**************************************************************************/
-#include "HX711.h"
+#include <HX711.h>
+#include <WiFi.h>
+#include <WiFiClient.h>
 
 /* Dados integração BLINK */
 #define BLYNK_TEMPLATE_ID   "TMPL2d51ih57v"
@@ -13,35 +15,74 @@
 #define BLYNK_AUTH_TOKEN    "Ln17IZgla8YnJqnETl4fCSCXmE8HzoIG"
 #define BLYNK_PRINT Serial
 
+#include <BlynkSimpleEsp32.h>
+
 /* Pinos sensor */
 #define DT  25
 #define SCK 26
 
 HX711 sensor; // Instância biblioteca sensor
 
+BlynkTimer timer;
+
+bool debug = false;
+
+char ssid[] = "Beerpass_ME";
+char pass[] = "57575757";
+
+// This function is called every time the Virtual Pin 0 state changes
+BLYNK_WRITE(V0)
+{
+  int pinValue = param.asInt();
+  if(pinValue == 1){
+    Serial.println("Tarando via Blink...");
+    sensor.tare(50);// Fixa o peso como tara
+  }  
+}
+
+BLYNK_WRITE(V2)
+{
+    int pinValue = param.asInt();
+    if(pinValue == 1){
+        Serial.println("Alterando modo debug/leitura");
+        debug = true;
+    }else if(pinValue == 0){
+        debug = false;
+    }
+}
+
 void setup(){
     Serial.begin(115200);
-    Serial.println("Inicializando Comunicação");
+    Serial.println("Inicializando Comunicacao");
+    Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
     sensor.begin(DT, SCK);
+    delay(500);
+    if(!sensor.is_ready()){
+        Serial.print("HX711 not found. Reiniciando");
+        loading(500, 5);
+        esp_restart();
+    }
 }
 
 void loop(){
-    if(sensor.is_ready()){
+    if(debug){
         sensor.set_scale();
         Serial.print("Tarando... remova qualquer peso da balanca");
         loading(500, 5);
-        sensor.tare();
+        sensor.tare(50);
         Serial.println("Tara feita.");
-        Serial.print("Coloque um peso conhecido sobre a balança");
+        Serial.print("Coloque um peso conhecido sobre a balanca");
         loading(500, 5);
         long leituraTaraMedia20 = sensor.get_units(20);
         long leituraMedia20 = sensor.read_average(20);
         Serial.print("Leitura com tara: "); Serial.println(leituraTaraMedia20);
         Serial.print("Leitura sem tara: "); Serial.println(leituraMedia20);
+        delay(1000);
     }else{
-        Serial.print("HX711 not found. Reiniciando");
-        loading(500, 5);
-        esp_restart();
+        double leitura = sensor.get_units(30) * (-450.00);
+        Serial.print("Leitura: "); Serial.print(leitura); Serial.println("g");
+        Blynk.virtualWrite(V1, leitura);
+        delay(1000);
     }
 }
 

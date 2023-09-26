@@ -220,6 +220,8 @@
                 "C:\\Users\\theo-\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.9\\cores\\esp32",
                 "C:\\Users\\theo-\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.9\\variants\\doitESP32devkitV1",
                 "C:\\Users\\theo-\\OneDrive\\Documents\\Arduino\\libraries\\HX711_Arduino_Library\\src",
+                "C:\\Users\\theo-\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.9\\libraries\\WiFi\\src",
+                "C:\\Users\\theo-\\OneDrive\\Documents\\Arduino\\libraries\\Blynk\\src",
                 "c:\\users\\theo-\\appdata\\local\\arduino15\\packages\\esp32\\tools\\xtensa-esp32-elf-gcc\\esp-2021r2-patch5-8.4.0\\xtensa-esp32-elf\\include\\c++\\8.4.0",
                 "c:\\users\\theo-\\appdata\\local\\arduino15\\packages\\esp32\\tools\\xtensa-esp32-elf-gcc\\esp-2021r2-patch5-8.4.0\\xtensa-esp32-elf\\include\\c++\\8.4.0\\xtensa-esp32-elf",
                 "c:\\users\\theo-\\appdata\\local\\arduino15\\packages\\esp32\\tools\\xtensa-esp32-elf-gcc\\esp-2021r2-patch5-8.4.0\\xtensa-esp32-elf\\include\\c++\\8.4.0\\backward",
