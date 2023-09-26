@@ -10,12 +10,12 @@
     "Includepath": "C:\\Users\\theo-\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.9\\variants\\doitESP32devkitV1"
   },
   {
-    "Sourcefile": "c:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\build\\sketch\\balance.ino.cpp",
+    "Sourcefile": "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\build\\sketch\\balance.ino.cpp",
     "Include": "HX711.h",
     "Includepath": "C:\\Users\\theo-\\OneDrive\\Documents\\Arduino\\libraries\\HX711_Arduino_Library\\src"
   },
   {
-    "Sourcefile": "c:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\build\\sketch\\balance.ino.cpp",
+    "Sourcefile": "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\build\\sketch\\balance.ino.cpp",
     "Include": "",
     "Includepath": null
   },

@@ -18,11 +18,12 @@
 
 
 
+
 /* Pinos sensor */
 
 
 
-HX771 sensor; // Instância biblioteca sensor
+HX711 sensor; // Instância biblioteca sensor
 
 void setup(){
     Serial.begin(115200);
@@ -32,6 +33,28 @@ void setup(){
 
 void loop(){
     if(sensor.is_ready()){
-
+        sensor.set_scale();
+        Serial.print("Tarando... remova qualquer peso da balanca");
+        loading(500, 5);
+        sensor.tare();
+        Serial.println("Tara feita.");
+        Serial.print("Coloque um peso conhecido sobre a balança");
+        loading(500, 5);
+        long leituraTaraMedia20 = sensor.get_units(20);
+        long leituraMedia20 = sensor.read_average(20);
+        Serial.print("Leitura com tara: "); Serial.println(leituraTaraMedia20);
+        Serial.print("Leitura sem tara: "); Serial.println(leituraMedia20);
+    }else{
+        Serial.print("HX711 not found. Reiniciando");
+        loading(500, 5);
+        esp_restart();
     }
+}
+
+void loading(int timePerLoop, uint8_t loops){
+    for(byte i=0; i<loops; i++){
+        delay(timePerLoop);
+        Serial.print(".");
+    }
+    Serial.println("");
 }
