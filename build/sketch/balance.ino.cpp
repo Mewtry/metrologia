@@ -29,8 +29,8 @@ BlynkTimer timer;
 
 bool debug = false;
 
-char ssid[] = "Beerpass_ME";
-char pass[] = "57575757";
+char ssid[] = "WIFI GRÁTIS CONFIA";
+char pass[] = "QUEROVIRUSPLS";
 
 // This function is called every time the Virtual Pin 0 state changes
 #line 34 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
@@ -39,9 +39,9 @@ void BlynkWidgetWrite0(BlynkReq __attribute__ ((__unused__)) &request, const Bly
 void BlynkWidgetWrite2(BlynkReq __attribute__ ((__unused__)) &request, const BlynkParam __attribute__ ((__unused__)) &param);
 #line 54 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
 void setup();
-#line 67 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+#line 68 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
 void loop();
-#line 89 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+#line 91 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
 void loading(int timePerLoop, uint8_t loops);
 #line 34 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
 BLYNK_WRITE(V0)
@@ -70,6 +70,7 @@ void setup(){
     Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
     sensor.begin(DT, SCK);
     delay(500);
+    sensor.set_scale(450);
     if(!sensor.is_ready()){
         Serial.print("HX711 not found. Reiniciando");
         loading(500, 5);
@@ -92,8 +93,9 @@ void loop(){
         Serial.print("Leitura sem tara: "); Serial.println(leituraMedia20);
         delay(1000);
     }else{
-        double leitura = sensor.get_units(30) * (-450.00);
-        Serial.print("Leitura: "); Serial.print(leitura); Serial.println("g");
+        double raw = sensor.read_average(20);
+        double leitura = sensor.get_units(20);
+        Serial.print("Raw: "); Serial.print(raw, 0); Serial.print(" |  Convertido: "); Serial.print(leitura, 0); Serial.println("g");
         Blynk.virtualWrite(V1, leitura);
         delay(1000);
     }
