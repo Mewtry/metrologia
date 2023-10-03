@@ -33,8 +33,8 @@ BlynkTimer timer;
 
 bool debug = false;
 
-char ssid[] = "WIFI GRÁTIS CONFIA";
-char pass[] = "QUEROVIRUSPLS";
+char ssid[] = "Yas";
+char pass[] = "senha123";
 
 // This function is called every time the Virtual Pin 0 state changes
 void BlynkWidgetWrite0 (BlynkReq __attribute__ ((__unused__)) &request, const BlynkParam __attribute__ ((__unused__)) &param)
@@ -63,12 +63,13 @@ void setup(){
     Blynk.begin("Ln17IZgla8YnJqnETl4fCSCXmE8HzoIG", ssid, pass);
     sensor.begin(25, 26);
     delay(500);
-    sensor.set_scale(450);
+    sensor.set_scale(436.4);
     if(!sensor.is_ready()){
         Serial.print("HX711 not found. Reiniciando");
         loading(500, 5);
         esp_restart();
     }
+    sensor.tare(50);
 }
 
 void loop(){
@@ -86,11 +87,12 @@ void loop(){
         Serial.print("Leitura sem tara: "); Serial.println(leituraMedia20);
         delay(1000);
     }else{
-        double raw = sensor.read_average(20);
-        double leitura = sensor.get_units(20);
-        Serial.print("Raw: "); Serial.print(raw, 0); Serial.print(" |  Convertido: "); Serial.print(leitura, 0); Serial.println("g");
+        //double raw = sensor.read_average(20);
+        double leitura = sensor.get_units(20)*0.99992;
+        //Serial.print("Raw: "); Serial.print(raw, 0);
+        Serial.print("Convertido: "); Serial.print(leitura, 2); Serial.println("g");
         Blynk.virtualWrite(1, leitura);
-        delay(1000);
+        //delay(200);
     }
 }
 
