@@ -1,4 +1,4 @@
-# 1 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+# 1 "C:\\workspace\\metrologia\\balance\\balance.ino"
 /**************************************************************************/
 /**
 
@@ -9,11 +9,11 @@
  * @date    26/09/2023
 
 */
-# 7 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+# 7 "C:\\workspace\\metrologia\\balance\\balance.ino"
 /**************************************************************************/
-# 9 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino" 2
-# 10 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino" 2
-# 11 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino" 2
+# 9 "C:\\workspace\\metrologia\\balance\\balance.ino" 2
+# 10 "C:\\workspace\\metrologia\\balance\\balance.ino" 2
+# 11 "C:\\workspace\\metrologia\\balance\\balance.ino" 2
 
 /* Dados integração BLINK */
 
@@ -21,7 +21,7 @@
 
 
 
-# 19 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino" 2
+# 19 "C:\\workspace\\metrologia\\balance\\balance.ino" 2
 
 /* Pinos sensor */
 
@@ -63,7 +63,7 @@ void setup(){
     Blynk.begin("Ln17IZgla8YnJqnETl4fCSCXmE8HzoIG", ssid, pass);
     sensor.begin(25, 26);
     delay(500);
-    sensor.set_scale(436.4);
+    sensor.set_scale(437); // 436.4
     if(!sensor.is_ready()){
         Serial.print("HX711 not found. Reiniciando");
         loading(500, 5);

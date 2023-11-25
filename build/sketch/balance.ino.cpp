@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#line 1 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+#line 1 "C:\\workspace\\metrologia\\balance\\balance.ino"
 /**************************************************************************/
 /**
  * @file    balance.ino
@@ -33,17 +33,17 @@ char ssid[] = "Yas";
 char pass[] = "senha123";
 
 // This function is called every time the Virtual Pin 0 state changes
-#line 34 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+#line 34 "C:\\workspace\\metrologia\\balance\\balance.ino"
 void BlynkWidgetWrite0(BlynkReq __attribute__ ((__unused__)) &request, const BlynkParam __attribute__ ((__unused__)) &param);
-#line 43 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+#line 43 "C:\\workspace\\metrologia\\balance\\balance.ino"
 void BlynkWidgetWrite2(BlynkReq __attribute__ ((__unused__)) &request, const BlynkParam __attribute__ ((__unused__)) &param);
-#line 54 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+#line 54 "C:\\workspace\\metrologia\\balance\\balance.ino"
 void setup();
-#line 69 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+#line 69 "C:\\workspace\\metrologia\\balance\\balance.ino"
 void loop();
-#line 93 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+#line 93 "C:\\workspace\\metrologia\\balance\\balance.ino"
 void loading(int timePerLoop, uint8_t loops);
-#line 34 "C:\\Users\\theo-\\Área de Trabalho\\Arquivos Theo\\Metrologia\\metrologia\\balance\\balance.ino"
+#line 34 "C:\\workspace\\metrologia\\balance\\balance.ino"
 BLYNK_WRITE(V0)
 {
   int pinValue = param.asInt();
@@ -70,7 +70,7 @@ void setup(){
     Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
     sensor.begin(DT, SCK);
     delay(500);
-    sensor.set_scale(436.4);
+    sensor.set_scale(437); // 436.4
     if(!sensor.is_ready()){
         Serial.print("HX711 not found. Reiniciando");
         loading(500, 5);

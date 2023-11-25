@@ -57,7 +57,7 @@ void setup(){
     Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
     sensor.begin(DT, SCK);
     delay(500);
-    sensor.set_scale(436.4);
+    sensor.set_scale(437); // 436.4
     if(!sensor.is_ready()){
         Serial.print("HX711 not found. Reiniciando");
         loading(500, 5);
